@@ -18,9 +18,9 @@ int main(int argc, char **argv)
     // module information
     bool needsGetModule;
     u32 numModules;
-	// permission related
-	MemoryInfo memInfo;
-	u32 pageInfo;
+    // permission related
+    MemoryInfo memInfo;
+    u32 pageInfo;
     // drawing
     bool needsUpdate = true;
     
@@ -146,22 +146,22 @@ int main(int argc, char **argv)
                     printf("Module Number: %d\n", i);
                     printf("Base Address: 0x%lx\n", moduleInfos[i].base_address);
                     printf("Module Size: 0x%lx\n\n", moduleInfos[i].size);
-					
-					res = svcQueryMemory(&memInfo, &pageInfo, moduleInfos[i].base_address);
-					
-					if (R_FAILED(res))
-					{
-						printf("svcQueryMemory() failed. 0x%x\n", res);
-						needsUpdate = false;
-						continue;
-					}
-					
-					printf("Permissions:\n");
-					printf("Full Value: %d\n", memInfo.perm);
-					printf("R: %d\n", (memInfo.perm) & 0x01);
-					printf("W: %d\n", (memInfo.perm >> 1) & 0x01);
-					printf("X: %d\n\n", (memInfo.perm >> 2) & 0x01);
-					
+                    
+                    res = svcQueryMemory(&memInfo, &pageInfo, moduleInfos[i].base_address);
+                    
+                    if (R_FAILED(res))
+                    {
+                        printf("svcQueryMemory() failed. 0x%x\n", res);
+                        needsUpdate = false;
+                        continue;
+                    }
+                    
+                    printf("Permissions:\n");
+                    printf("Full Value: %d\n", memInfo.perm);
+                    printf("R: %d\n", (memInfo.perm) & 0x01);
+                    printf("W: %d\n", (memInfo.perm >> 1) & 0x01);
+                    printf("X: %d\n\n", (memInfo.perm >> 2) & 0x01);
+                    
                 }
             }
             
